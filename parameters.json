@@ -1,4 +1,6 @@
-{
-    "query": "Colorado Springs, Colorado",
-    "CSV": "colorado_springs_colorado.csv"
-}
+[
+    {
+        "query": "Colorado Springs, Colorado",
+        "CSV": "colorado_springs_colorado.csv"
+    }
+]
