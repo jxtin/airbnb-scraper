@@ -38,9 +38,15 @@ split_commands = list(split(commands, 6))
 print(len(split_commands))
 
 
+kill_threads = False
+
+
 def thread1(commands):
     print("thread1: ")
+    global kill_threads
     for command in commands:
+        if kill_threads:
+            break
         print(command)
         os.system(command)
         print("\n")
@@ -50,7 +56,10 @@ def thread1(commands):
 
 def thread2(commands):
     print("thread2: ")
+    global kill_threads
     for command in commands:
+        if kill_threads:
+            break
         print(command)
         os.system(command)
         print("\n")
@@ -60,7 +69,10 @@ def thread2(commands):
 
 def thread3(commands):
     print("thread3: ")
+    global kill_threads
     for command in commands:
+        if kill_threads:
+            break
         print(command)
         os.system(command)
         print("\n")
@@ -70,7 +82,10 @@ def thread3(commands):
 
 def thread4(commands):
     print("thread4: ")
+    global kill_threads
     for command in commands:
+        if kill_threads:
+            break
         print(command)
         os.system(command)
         print("\n")
@@ -80,7 +95,10 @@ def thread4(commands):
 
 def thread5(commands):
     print("thread5: ")
+    global kill_threads
     for command in commands:
+        if kill_threads:
+            break
         print(command)
         os.system(command)
         print("\n")
@@ -90,7 +108,10 @@ def thread5(commands):
 
 def thread6(commands):
     print("thread6: ")
+    global kill_threads
     for command in commands:
+        if kill_threads:
+            break
         print(command)
         os.system(command)
         print("\n")
@@ -106,9 +127,36 @@ athread4 = threading.Thread(target=thread4, args=(split_commands[3],))
 athread5 = threading.Thread(target=thread5, args=(split_commands[4],))
 athread6 = threading.Thread(target=thread6, args=(split_commands[5],))
 
+
+athread1.daemon = True
+athread2.daemon = True
+athread3.daemon = True
+athread4.daemon = True
+athread5.daemon = True
+athread6.daemon = True
+
+
 athread1.start()
 athread2.start()
 athread3.start()
 athread4.start()
 athread5.start()
 athread6.start()
+
+if input("enter 000 to exit: ") == "000":
+    print("\n")
+    print("===========================================================")
+    print("Exit requested")
+    print("===========================================================")
+    print("\n")
+    kill_threads = True
+    athread1.join()
+    athread2.join()
+    athread3.join()
+    athread4.join()
+    athread5.join()
+    athread6.join()
+    print("\n")
+    print("All threads stopped")
+    print("\n")
+    sys.exit(0)
